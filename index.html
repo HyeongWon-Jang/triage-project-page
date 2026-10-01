@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="TRIAGE trains an LLM to reason dialectically over competing clinical outcomes, mitigating risk polarization so that a single model provides both clinical rationales and cross-patient comparable risk scores on irregularly sampled medical time series.">
+  <meta name="keywords" content="clinical risk prediction, irregularly sampled time series, large language models, explainable AI, calibration, reinforcement learning, MIMIC, eICU, PhysioNet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TRIAGE: Dialectical LLM Reasoning for Explainable Risk Prediction on Irregularly Sampled Medical Time Series</title>
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="TRIAGE: Dialectical LLM Reasoning for Explainable Risk Prediction on Irregularly Sampled Medical Time Series">
+  <meta property="og:description" content="Dialectical LLM reasoning over alternative outcomes for calibrated, explainable clinical risk prediction on irregularly sampled medical time series.">
+  <meta property="og:url" content="https://hyeongwon-jang.github.io/triage-project-page/">
+  <meta property="og:image" content="https://hyeongwon-jang.github.io/triage-project-page/static/images/teaser.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <meta name="citation_title" content="TRIAGE: Dialectical LLM Reasoning for Explainable Risk Prediction on Irregularly Sampled Medical Time Series">
+  <meta name="citation_author" content="Jang, Hyeongwon">
+  <meta name="citation_author" content="Chu, Gyouk">
+  <meta name="citation_author" content="Kim, Changhun">
+  <meta name="citation_author" content="Yoon, Hangyul">
+  <meta name="citation_author" content="Lee, Jeonguk">
+  <meta name="citation_author" content="Yang, Eunho">
+  <meta name="citation_author" content="Park, Joonhyung">
+  <meta name="citation_publication_date" content="2026">
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+  rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <link rel="icon" href="static/images/favicon.ico">
+
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/index.js"></script>
+</head>
+<body>
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-2 publication-title">
+              TRIAGE: Dialectical LLM Reasoning for Explainable Risk Prediction on Irregularly Sampled Medical Time Series
+            </h1>
+            <div class="is-size-5 publication-authors">
+              <!-- Paper authors -->
+              <span class="author-block">
+                <a href="https://hyeongwon-jang.github.io/" target="_blank">Hyeongwon Jang</a><sup>1*</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://gyoukchu.github.io/" target="_blank">Gyouk Chu</a><sup>1*</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://changhun.kim/" target="_blank">Changhun Kim</a><sup>2,3</sup>,
+              </span>
+              <span class="author-block">
+                Hangyul Yoon<sup>1</sup>,
+              </span>
+              <span class="author-block">
+                Jeonguk Lee<sup>3</sup>,
+              </span>
+              <span class="author-block">
+                Eunho Yang<sup>1,3</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://joonhyung-park.github.io/" target="_blank">Joonhyung Park</a><sup>4&dagger;</sup>
+              </span>
+            </div>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup>KAIST, <sup>2</sup>University of Wisconsin&ndash;Madison, <sup>3</sup>AITRICS, <sup>4</sup>Kyung Hee University</span>
+            </div>
+            <div class="is-size-6 publication-authors">
+              <span class="eql-cntrb"><sup>*</sup>Equal contribution &nbsp; <sup>&dagger;</sup>Corresponding author</span>
+            </div>
+            <!-- Venue -->
+            <div class="is-size-4" style="margin-top: 1rem;">
+              <strong>Preprint</strong>
+            </div>
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- Paper link: enable once the preprint is listed
+                <span class="link-block">
+                  <a href="https://arxiv.org/pdf/XXXX.XXXXX" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                  </a>
+                </span>
+                -->
+                <!-- arXiv abstract link: enable once the preprint is listed
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/XXXX.XXXXX" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                  </a>
+                </span>
+                -->
+                <!-- Github link -->
+                <span class="link-block">
+                  <a href="https://github.com/Hyeongwon-Jang/TRIAGE" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+                </span>
+                <!-- Hugging Face collection link -->
+                <span class="link-block">
+                  <a href="https://huggingface.co/collections/Hyeongwon/triage" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">&#129303;</span>
+                  <span>Hugging Face</span>
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Teaser -->
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <img src="static/images/teaser.png" alt="Overview of TRIAGE (top) and its two-stage training pipeline (bottom)."/>
+        <div class="content has-text-justified">
+          <strong>TRIAGE</strong> grounds clinical risk estimation in dialectical reasoning over alternative outcomes. <strong>(Top)</strong> Given irregular patient records as language inputs, it writes a rationale for each candidate outcome and then emits the outcome token directly, with no verdict in between, so a single LLM provides both a clinician-facing explanation and a continuous, cross-patient comparable risk score. <strong>(Bottom)</strong> The model is trained with dialectical reasoning supervision followed by on-policy self-refinement.
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End teaser -->
+
+  <!-- Paper abstract -->
+  <section class="section hero is-light">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              Clinical early warning systems built on irregularly sampled medical time series (ISMTS) from electronic health records must deliver continuous risk scores for patient triage as well as interpretable rationales that clinicians can verify.
+              Large language models (LLMs) are uniquely positioned for both, deriving risk from their output probabilities and rationales from their medical knowledge.
+              However, we find that conventional LLM reasoning collapses graded risk into overconfident predictions and thereby undermines the cross-patient comparability on which triage depends.
+              We refer to this failure mode as <em>risk polarization</em> and identify two underlying behaviors: early commitment to a single outcome, and one-sided reasoning that focuses only on the evidence for that outcome.
+              To address this, we propose <strong>TRIAGE</strong>, a framework that trains an LLM to reason dialectically over competing clinical outcomes by eliciting outcome-specific rationales.
+              This dialectical formulation mitigates risk polarization, enabling a single LLM to jointly provide explicit clinical rationales and risk scores comparable across patients.
+              Across five ISMTS benchmarks, TRIAGE improves mean AUPRC by 17.0% and reduces mean calibration error by 82.8% relative to the competitive LLM-based baseline, while surpassing the strongest ISMTS baseline by 3.5% in mean AUPRC.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End paper abstract -->
+
+  <!-- Method -->
+  <section class="section hero">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-full">
+          <h2 class="title is-3">Method</h2>
+          <div class="content has-text-justified">
+            <p>
+              <strong>Dialectical reasoning over alternative outcomes.</strong> Conventional reasoning-then-answer prompting pre-commits to a verdict and cites one-sided evidence, which collapses the LLM's risk scores to the extremes. TRIAGE instead produces a dedicated rationale for each candidate outcome, in either order, and ends the chain with a <code>## Final Decision</code> header followed directly by the outcome token. The risk score is the model's implicit probability at that position, so it stays graded and comparable across patients.
+            </p>
+            <p>
+              <strong>Two-stage training.</strong> Stage 1 fine-tunes the LLM on outcome-specific rationales synthesized by a strong LLM, which is prompted separately for each outcome to list only the supporting evidence without fabricating it. Stage 2 refines the model with GRPO on its own samples: cross-entropy on the decision token supervises the implicit probability, and a batch-level margin reward pushes the log-odds of positive and negative patients apart to improve discrimination and calibration.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End method -->
+
+  <!-- Experiment -->
+  <section class="hero is-small">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column is-full">
+            <h2 class="title is-3">Experiment</h2>
+          </div>
+        </div>
+        <div class="content has-text-justified">
+          <p>
+            We evaluate TRIAGE, trained on Qwen3-4B-Base, on five ISMTS benchmarks (<strong>P12</strong>, <strong>P19</strong>, <strong>MIMIC-III</strong>, <strong>MIMIC-IV</strong>, <strong>eICU</strong>; P19 targets sepsis onset within 6 hours, the others in-hospital mortality) against specialized ISMTS models, LLM-based prediction methods and zero-shot LLMs. All numbers are mean &plusmn; standard deviation over five runs; AUROC and AUPRC are in %.
+          </p>
+          <p>
+            <strong>Discrimination.</strong> With SFT alone, TRIAGE reaches a mean AUPRC of 55.3, 12.6% above TimeCAP, the strongest LLM-based method, and within 0.3 points of the best ISMTS baselines. RL raises it to 57.4, 3.5% above GRU-D, with the best AUPRC on four of the five benchmarks and the second best on the remaining one.
+          </p>
+        </div>
+        <img src="static/images/table_discrimination.png" alt="Discrimination results on five ISMTS benchmarks." style="max-width:100%; height:auto; display:block; margin:0 auto;"/>
+        <p class="table-note">
+          Discrimination results. Specialized ISMTS models (gray) cannot explain their predictions and are shown for reference; <b>bold</b> and <u>underline</u> mark the best and second-best explainable methods. GPT-5.1 is not evaluated on the PhysioNet-credentialed datasets.
+        </p>
+
+        <div class="content has-text-justified">
+          <p>
+            <strong>Calibration.</strong> LLM-based baselines remain poorly calibrated (mean ECE 0.219 for TimeCAP and 0.285 for Record2Vec). RL reduces the mean ECE of TRIAGE from 0.180 to 0.038 and the mean Brier score from 0.138 to 0.077, giving the lowest ECE and Brier score on every benchmark.
+          </p>
+        </div>
+        <img src="static/images/table_calibration.png" alt="Calibration results on five ISMTS benchmarks." style="max-width:100%; height:auto; display:block; margin:0 auto;"/>
+        <p class="table-note">
+          Calibration results. Expected calibration error (ECE) and Brier score (BS); lower is better. <b>Bold</b> marks the best result.
+        </p>
+
+      </div>
+    </div>
+  </section>
+  <!-- End experiment -->
+
+  <!-- Analysis -->
+  <section class="section hero">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-full">
+          <h2 class="title is-3">Analysis</h2>
+            <h3 class="title is-4">Effect of Dialectical Reasoning</h3>
+            <div class="content has-text-justified">
+              <p>
+                Answer-only SFT beats zero-shot inference but gives no justification, and one-sided rationales inherit risk polarization and underperform answer-only SFT even at 10&times; inference cost. Dialectical reasoning achieves the best AUROC and AUPRC, and two clinicians rate its rationales as more helpful than one-sided ones (+0.62, <em>p</em>&lt;0.001) with correctness unchanged.
+            </p>
+          </div>
+          <div class="columns">
+            <div class="column is-4">
+              <img src="static/images/table_ablation.png" alt="Ablation on the reasoning structure." style="max-width:100%; height:auto; display:block; margin:0 auto;"/>
+              <p class="table-note">Ablation on the reasoning structure (P12, SFT setting).</p>
+            </div>
+            <div class="column is-8">
+              <img src="static/images/table_human.png" alt="Expert evaluation of generated reasoning by two clinicians." style="max-width:100%; height:auto; display:block; margin:0 auto;"/>
+              <p class="table-note">Expert evaluation of 120 rationales for 30 P12 ICU stays on a 1&ndash;5 scale. <sup>&dagger;</sup>/<sup>&Dagger;</sup>: differs from TRIAGE at <em>p</em>&lt;0.05 / <em>p</em>&lt;0.01.</p>
+            </div>
+          </div>
+
+            <h3 class="title is-4" style="margin-top:2rem;">Case Studies</h3>
+            <div class="content has-text-justified">
+              <p>
+                Two P12 cases comparing the rationales of TRIAGE with Integrated Gradients (IG) applied post hoc to STraTS, with the attributions textualized and interpreted by GPT-5.1.
+              </p>
+            </div>
+          <div id="results-carousel-cases" class="carousel results-carousel">
+            <div class="item">
+              <p class="case-label">Case 1 (P12): survivor &mdash; STraTS + IG predicts mortality (p = 0.746), TRIAGE predicts survival (p = 0.086)</p>
+              <a href="static/images/case_survival.png" target="_blank"><img src="static/images/case_survival.png" alt="Case study of a survivor: patient record, STraTS + IG attributions, and TRIAGE rationales."/></a>
+            </div>
+            <div class="item">
+              <p class="case-label">Case 2 (P12): non-survivor &mdash; both predict mortality; TRIAGE weighs the counter-evidence explicitly (p = 0.844)</p>
+              <a href="static/images/case_mortality.png" target="_blank"><img src="static/images/case_mortality.png" alt="Case study of a non-survivor: patient record, STraTS + IG attributions, and TRIAGE rationales."/></a>
+            </div>
+          </div>
+
+            <h3 class="title is-4" style="margin-top:2rem;">Faithfulness of the Rationales</h3>
+            <div class="content has-text-justified">
+              <p>
+                Erasing the measurements cited by a rationale degrades agreement with the full-input prediction monotonically, whereas erasing the same number of random measurements leaves it nearly unchanged. Regenerated rationales drop the claims whose evidence was erased, and only 1.3% of rationales cite a value absent from the record.
+            </p>
+          </div>
+          <img
+            src="static/images/faithfulness.png"
+            alt="AUROC and AUPRC against the full-input prediction on P12 as a function of the rationale deletion ratio."
+            style="max-width:70%; height:auto; display:block; margin:0 auto;"
+          />
+          <p class="figure-caption">Agreement with the full-input prediction on P12 as the cited measurements (Rationale-based) or random measurements (Random) are erased.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End analysis -->
+
+  <!-- BibTeX citation -->
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>@misc{jang2026triage,
+  title={TRIAGE: Dialectical LLM Reasoning for Explainable Risk Prediction on Irregularly Sampled Medical Time Series},
+  author={Jang, Hyeongwon and Chu, Gyouk and Kim, Changhun and Yoon, Hangyul and Lee, Jeonguk and Yang, Eunho and Park, Joonhyung},
+  year={2026},
+  note={Preprint}
+}</code></pre>
+    </div>
+  </section>
+  <!-- End BibTeX citation -->
+
+  <footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            You are free to borrow the source code of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  </body>
+  </html>
